@@ -1,0 +1,6 @@
+C:\Worksapce\VisualizadorServico\VisualizadorServico.Dominio\bin\Debug\VisualizadorServico.Dominio.dll
+C:\Worksapce\VisualizadorServico\VisualizadorServico.Dominio\bin\Debug\VisualizadorServico.Dominio.pdb
+C:\Worksapce\VisualizadorServico\VisualizadorServico.Dominio\obj\Debug\VisualizadorServico.Dominio.csprojAssemblyReference.cache
+C:\Worksapce\VisualizadorServico\VisualizadorServico.Dominio\obj\Debug\VisualizadorServico.Dominio.csproj.CoreCompileInputs.cache
+C:\Worksapce\VisualizadorServico\VisualizadorServico.Dominio\obj\Debug\VisualizadorServico.Dominio.dll
+C:\Worksapce\VisualizadorServico\VisualizadorServico.Dominio\obj\Debug\VisualizadorServico.Dominio.pdb

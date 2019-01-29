@@ -1,0 +1,15 @@
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\Principal.exe.config
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\Principal.exe
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\Principal.pdb
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\VisualizadorServico.Servico.dll
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\VisualizadorServico.Dominio.dll
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\VisualizadorServico.Servico.pdb
+C:\Worksapce\VisualizadorServico\Principal\bin\Debug\VisualizadorServico.Dominio.pdb
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\VisualizadorServico.Apresentacao.csprojAssemblyReference.cache
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\Principal.Form1.resources
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\Principal.Properties.Resources.resources
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\VisualizadorServico.Apresentacao.csproj.GenerateResource.cache
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\VisualizadorServico.Apresentacao.csproj.CoreCompileInputs.cache
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\VisualizadorServico.Apresentacao.csproj.CopyComplete
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\Principal.exe
+C:\Worksapce\VisualizadorServico\Principal\obj\Debug\Principal.pdb
