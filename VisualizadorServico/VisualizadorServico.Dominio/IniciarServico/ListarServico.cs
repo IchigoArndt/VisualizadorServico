@@ -14,11 +14,18 @@ namespace VisualizadorServico.Dominio.IniciarServico
             ManagementClass management = new ManagementClass("Win32_Process");
             ManagementObjectCollection mCollection = management.GetInstances();
             List<String> nomeServico = new List<string>();
+            nomeServico.Add("Nome:"+ "        "+"ID:");
+            string nameService = "";
+            string procesService = "";
             foreach (ManagementObject process in mCollection)
             {
-                
-                nomeServico.Add((process["ProcessId"].ToString()));
-                nomeServico.Add((string)process["Name"]);
+                nameService = (string)process["Name"];
+                procesService = process["ProcessId"].ToString();
+                if (nameService.Contains("aspnet"))
+                {
+                    nomeServico.Add(nameService + "        " + procesService);
+                }
+                   
             }
             return nomeServico;
         }

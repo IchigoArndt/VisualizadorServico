@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualizadorServico.Apresen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apresentacao", "Apresentacao", "{F8F792DF-8C08-4253-ABD1-629A551E3100}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servico", "Servico", "{4ABDC828-957A-4AE8-807D-847F5215916E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{4ABDC828-957A-4AE8-807D-847F5215916E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualizadorServico.Servico", "VisualizadorServico.Servico\VisualizadorServico.Servico.csproj", "{08D953B7-A89D-4DE8-8D87-9CAA698A9929}"
 EndProject
