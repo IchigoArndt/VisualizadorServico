@@ -1,0 +1,88 @@
+@import "primeicons/primeicons.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  .header-icon {
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-top: 0.1rem;
+  }
+}
+
+.app-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &.started {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  &.stopped {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+
+  &.starting,
+  &.stopping {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  &.unknown {
+    background-color: #e2e3e5;
+    color: #383d41;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+}

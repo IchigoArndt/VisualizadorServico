@@ -1,0 +1,176 @@
+<div class="pools-container">
+  <!-- Summary cards -->
+  <div class="summary-cards">
+    <p-card styleClass="summary-card total">
+      <div class="summary-content">
+        <i class="pi pi-server summary-icon"></i>
+        <div>
+          <div class="summary-value">{{ pools().length }}</div>
+          <div class="summary-label">Total de Pools</div>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card styleClass="summary-card started">
+      <div class="summary-content">
+        <i class="pi pi-check-circle summary-icon"></i>
+        <div>
+          <div class="summary-value">{{ totalStarted }}</div>
+          <div class="summary-label">Em Execução</div>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card styleClass="summary-card stopped">
+      <div class="summary-content">
+        <i class="pi pi-times-circle summary-icon"></i>
+        <div>
+          <div class="summary-value">{{ totalStopped }}</div>
+          <div class="summary-label">Parados</div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+
+  <!-- Main table card -->
+  <p-card>
+    <ng-template #header>
+      <div class="table-header">
+        <div class="table-title">
+          <i class="pi pi-server"></i>
+          <span>Application Pools — IIS</span>
+        </div>
+        <div class="table-actions">
+          <p-iconfield>
+            <p-inputicon styleClass="pi pi-search" />
+            <input
+              pInputText
+              type="text"
+              placeholder="Filtrar pools..."
+              (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            />
+          </p-iconfield>
+          <p-button
+            icon="pi pi-refresh"
+            label="Atualizar"
+            severity="secondary"
+            [loading]="loading()"
+            (onClick)="refreshPools()"
+            pTooltip="Recarregar lista de pools"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <p-table
+      #dt
+      [value]="pools()"
+      [loading]="loading()"
+      [globalFilterFields]="['name', 'status', 'managedRuntimeVersion', 'managedPipelineMode']"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Exibindo {first} a {last} de {totalRecords} pools"
+      styleClass="p-datatable-sm p-datatable-striped p-datatable-gridlines"
+      responsiveLayout="scroll"
+    >
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="name">
+            Nome do Pool <p-sortIcon field="name" />
+          </th>
+          <th pSortableColumn="status" style="width: 140px;">
+            Status <p-sortIcon field="status" />
+          </th>
+          <th pSortableColumn="managedRuntimeVersion" style="width: 160px;">
+            Runtime <p-sortIcon field="managedRuntimeVersion" />
+          </th>
+          <th pSortableColumn="managedPipelineMode" style="width: 160px;">
+            Pipeline <p-sortIcon field="managedPipelineMode" />
+          </th>
+          <th pSortableColumn="autoStart" style="width: 120px;">
+            Auto Start <p-sortIcon field="autoStart" />
+          </th>
+          <th pSortableColumn="workerProcesses" style="width: 140px;">
+            Worker Processes <p-sortIcon field="workerProcesses" />
+          </th>
+          <th style="width: 120px;">Ações</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-pool>
+        <tr>
+          <td>
+            <span class="pool-name">
+              <i class="pi pi-server pool-icon"></i>
+              {{ pool.name }}
+            </span>
+          </td>
+          <td>
+            <p-tag
+              [value]="pool.status"
+              [severity]="getStatusSeverity(pool.status)"
+              [icon]="getStatusIcon(pool.status)"
+            />
+          </td>
+          <td>{{ pool.managedRuntimeVersion }}</td>
+          <td>{{ pool.managedPipelineMode }}</td>
+          <td>
+            <p-tag
+              [value]="pool.autoStart ? 'Sim' : 'Não'"
+              [severity]="pool.autoStart ? 'success' : 'secondary'"
+            />
+          </td>
+          <td class="text-center">{{ pool.workerProcesses }}</td>
+          <td>
+            <div class="action-buttons">
+              <p-button
+                icon="pi pi-play"
+                [rounded]="true"
+                [text]="true"
+                severity="success"
+                pTooltip="Iniciar"
+                [disabled]="pool.status === 'Started'"
+              />
+              <p-button
+                icon="pi pi-stop"
+                [rounded]="true"
+                [text]="true"
+                severity="danger"
+                pTooltip="Parar"
+                [disabled]="pool.status === 'Stopped'"
+              />
+              <p-button
+                icon="pi pi-refresh"
+                [rounded]="true"
+                [text]="true"
+                severity="warn"
+                pTooltip="Reciclar"
+              />
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="7" class="empty-message">
+            <i class="pi pi-inbox"></i>
+            <span>Nenhum pool encontrado</span>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #loadingbody>
+        @for (row of [1,2,3,4,5]; track row) {
+          <tr>
+            @for (col of [1,2,3,4,5,6,7]; track col) {
+              <td><p-skeleton /></td>
+            }
+          </tr>
+        }
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
