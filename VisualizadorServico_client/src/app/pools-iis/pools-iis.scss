@@ -111,3 +111,31 @@
     margin-bottom: 0.5rem;
   }
 }
+
+// ── Dark Mode ─────────────────────────────────────────────────────────────────
+
+:host-context(body.dark-mode) {
+  .summary-label {
+    color: #94a3b8;
+  }
+
+  .summary-value {
+    color: #e2e8f0;
+  }
+
+  .table-title {
+    color: #93c5fd;
+  }
+
+  .pool-name .pool-icon {
+    color: #60a5fa;
+  }
+
+  .empty-message {
+    color: #475569;
+
+    i {
+      color: #475569;
+    }
+  }
+}
