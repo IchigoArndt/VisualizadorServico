@@ -107,6 +107,11 @@ body {
 }
 
 // ── Tooltip ───────────────────────────────────────────────────────────────────
+// Evita quebra de linha em todos os tooltips do projeto.
+
+.p-tooltip-text {
+  white-space: nowrap;
+}
 
 .nowrap-tooltip .p-tooltip-text {
   white-space: nowrap;

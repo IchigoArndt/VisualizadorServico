@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TooltipModule } from 'primeng/tooltip';
 import { SkeletonModule } from 'primeng/skeleton';
 import { IisPool, PoolStatus } from './iis-pool.model';
+import { IisService } from '../services/iis.service';
 
 @Component({
   selector: 'app-pools-iis',
@@ -32,19 +33,24 @@ export class PoolsIis implements OnInit {
   pools = signal<IisPool[]>([]);
   loading = signal<boolean>(true);
 
-  readonly mockPools: IisPool[] = [
-    { name: 'DefaultAppPool', status: 'Started', managedRuntimeVersion: 'v4.0', managedPipelineMode: 'Integrated', autoStart: true, workerProcesses: 1 },
-    { name: 'Classic .NET AppPool', status: 'Stopped', managedRuntimeVersion: 'v2.0', managedPipelineMode: 'Classic', autoStart: false, workerProcesses: 0 },
-    { name: 'API_Pool', status: 'Started', managedRuntimeVersion: 'v4.0', managedPipelineMode: 'Integrated', autoStart: true, workerProcesses: 2 },
-    { name: '.NET v4.5', status: 'Started', managedRuntimeVersion: 'v4.0', managedPipelineMode: 'Integrated', autoStart: true, workerProcesses: 1 },
-    { name: 'LegacyApp_Pool', status: 'Stopping', managedRuntimeVersion: 'v2.0', managedPipelineMode: 'Classic', autoStart: false, workerProcesses: 0 },
-  ];
+  constructor(private readonly iisService: IisService) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.pools.set(this.mockPools);
-      this.loading.set(false);
-    }, 1000);
+    this.loadPools();
+  }
+
+  private loadPools(): void {
+    this.loading.set(true);
+    this.iisService.getAllApplicationPools().subscribe({
+      next: (data) => {
+        this.pools.set(data);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.pools.set([]);
+        this.loading.set(false);
+      }
+    });
   }
 
   getStatusSeverity(status: PoolStatus): 'success' | 'danger' | 'warn' | 'secondary' {
@@ -70,12 +76,7 @@ export class PoolsIis implements OnInit {
   }
 
   refreshPools(): void {
-    this.loading.set(true);
-    this.pools.set([]);
-    setTimeout(() => {
-      this.pools.set(this.mockPools);
-      this.loading.set(false);
-    }, 1200);
+    this.loadPools();
   }
 
   get totalStarted(): number {
@@ -84,5 +85,36 @@ export class PoolsIis implements OnInit {
 
   get totalStopped(): number {
     return this.pools().filter(p => p.status === 'Stopped').length;
+  }
+
+  startPool(poolName: string): void { 
+    this.iisService.startPool(poolName).subscribe({
+      next: () => {
+        this.loadPools();
+      },
+      error: () => {
+        this.loadPools();
+      }
+    });
+  }
+  stopPool(poolName: string): void {
+    this.iisService.stopPool(poolName).subscribe({
+      next: () => {
+        this.loadPools();
+      },
+      error: () => {
+        this.loadPools();
+      }
+    });
+  }
+  recyclePool(poolName: string): void {
+    this.iisService.recyclePool(poolName).subscribe({
+      next: () => {
+        this.loadPools();
+      },
+      error: () => {
+        this.loadPools();
+      }
+    });
   }
 }

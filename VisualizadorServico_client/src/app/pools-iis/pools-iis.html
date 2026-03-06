@@ -56,6 +56,7 @@
             [loading]="loading()"
             (onClick)="refreshPools()"
             pTooltip="Recarregar lista de pools"
+            tooltipStyleClass="nowrap-tooltip"
           />
         </div>
       </div>
@@ -127,17 +128,21 @@
               <p-button
                 icon="pi pi-play"
                 [rounded]="true"
+                (onClick)="startPool(pool.name)"
                 [text]="true"
                 severity="success"
                 pTooltip="Iniciar"
+                tooltipStyleClass="nowrap-tooltip"
                 [disabled]="pool.status === 'Started'"
               />
               <p-button
                 icon="pi pi-stop"
                 [rounded]="true"
                 [text]="true"
+                (onClick)="stopPool(pool.name)"
                 severity="danger"
                 pTooltip="Parar"
+                tooltipStyleClass="nowrap-tooltip"
                 [disabled]="pool.status === 'Stopped'"
               />
               <p-button
@@ -146,6 +151,8 @@
                 [text]="true"
                 severity="warn"
                 pTooltip="Reciclar"
+                tooltipStyleClass="nowrap-tooltip"
+                (onClick)="recyclePool(pool.name)"
               />
             </div>
           </td>
